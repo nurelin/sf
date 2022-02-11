@@ -1,12 +1,13 @@
-all: lf plf vfa qc vc
+all: lf plf vfa qc vc slf
 
-.PHONY: lf plf vfa qc vc
+.PHONY: lf plf vfa qc vc slf
 
 lf: doc/pdf/lf.pdf
 plf: doc/pdf/plf.pdf
 vfa: doc/pdf/vfa.pdf
 qc: doc/pdf/qc.pdf
 vc: doc/pdf/vc.pdf
+slf: doc/pdf/slf.pdf
 
 doc/pdf/lf.pdf: src/lf/all.pdf
 	mkdir -p doc/pdf
@@ -28,21 +29,23 @@ doc/pdf/vc.pdf: src/vc/all.pdf
 	mkdir -p doc/pdf
 	mv src/vc/all.pdf doc/pdf/vc.pdf
 
+doc/pdf/slf.pdf: src/slf/all.pdf
+	mkdir -p doc/pdf
+	mv src/slf/all.pdf doc/pdf/slf.pdf
+
 src/lf/all.pdf:
-	-patch -N -d src/lf < src/lf-Preface.v.patch
+	-patch -N -d src/lf < src/Induction.v.patch
 	make -C src/lf
 	-patch -N -d src/lf < src/Makefile.patch
 	make -C src/lf -f Makefile.coq all.pdf
 	
 src/plf/all.pdf:
-	-patch -N -d src/plf < src/plf-Preface.v.patch
 	-patch -N -d src/plf < src/Hoare.v.patch
 	make -C src/plf
 	-patch -N -d src/plf < src/Makefile.patch
 	make -C src/plf -f Makefile.coq all.pdf
 	
 src/vfa/all.pdf:
-	-patch -N -d src/vfa < src/vfa-Preface.v.patch
 	-patch -N -d src/vfa < src/Extract.v.patch
 	-patch -N -d src/vfa < src/Redblack.v.patch
 	make -C src/vfa
@@ -50,7 +53,6 @@ src/vfa/all.pdf:
 	make -C src/vfa -f Makefile.coq all.pdf
 	
 src/qc/all.pdf:
-	-patch -N -d src/qc < src/qc-Preface.v.patch
 	-patch -N -d src/qc < src/Typeclasses.v.patch
 	-patch -N -d src/qc < src/QuickChickTool.v.patch
 	make -C src/qc
@@ -58,7 +60,6 @@ src/qc/all.pdf:
 	make -C src/qc -f Makefile.coq all.pdf
 
 src/vc/all.pdf:
-	-patch -N -d src/vc < src/vc-Preface.v.patch
 	-patch -N -d src/vc < src/Verif_sumarray.v.patch
 	-patch -N -d src/vc < src/Verif_reverse.v.patch
 	-patch -N -d src/vc < src/Verif_strlib.v.patch
@@ -66,3 +67,9 @@ src/vc/all.pdf:
 	make -C src/vc
 	-patch -N -d src/vc < src/Makefile.patch
 	make -C src/vc -f Makefile.coq all.pdf
+
+src/slf/all.pdf:
+	-patch -N -d src/slf < src/Rules.v.patch
+	make -C src/slf
+	-patch -N -d src/slf < src/Makefile.patch
+	make -C src/slf -f Makefile.coq all.pdf

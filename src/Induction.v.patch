@@ -1,0 +1,12 @@
+--- Induction.v.orig	2022-02-11 18:58:51.594515117 +0100
++++ Induction.v	2022-02-11 18:59:41.750721631 +0100
+@@ -39,7 +39,9 @@
+        single archive, a [Makefile] should already exist and you can
+        skip this step):
+ 
++<<
+          coq_makefile -f _CoqProject *.v -o Makefile
++>>
+ 
+        Note: You should rerun that command whenever you add or remove
+        Coq files to the directory.

@@ -1,0 +1,11 @@
+--- Rules.v.orig	2022-02-11 19:14:29.428480479 +0100
++++ Rules.v	2022-02-11 19:14:50.672212616 +0100
+@@ -378,7 +378,7 @@
+ End SyntaxAndSemantics.
+ 
+ (* ----------------------------------------------------------------- *)
+-(** *** Loading of Definitions from [Direcŧ] *)
++(** *** Loading of Definitions from [Direct] *)
+ 
+ (** Throughout the rest of this file, we rely not on the definitions
+     shown above, but on the definitions from [LibSepDirect.v]. The latter

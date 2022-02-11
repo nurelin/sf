@@ -3,20 +3,23 @@ _sf_
 
 Mirror of the [Software Foundations](http://softwarefoundations.cis.upenn.edu/) series of books.  Includes generated PDFs.
 
-- B. Pierce, et al. (2020) [“Logical Foundations”](doc/pdf/lf.pdf)  
-  _Version 5.8 (2020-09-09 20:57, Coq 8.12)_
+- B. Pierce, et al. (2021) [“Logical Foundations”](doc/pdf/lf.pdf)  
+  _Version 6.1 (2021-08-11 15:09, Coq 8.12 or later)_
 
-- B. Pierce, et al. (2020) [“Programming Language Foundations”](doc/pdf/plf.pdf)  
-  _Version 5.8 (2020-09-09 21:10, Coq 8.12)_
+- B. Pierce, et al. (2021) [“Programming Language Foundations”](doc/pdf/plf.pdf)  
+  _Version 6.1 (2021-08-11 15:14, Coq 8.12 or later)_
 
-- A. Appel (2020) [“Verified Functional Algorithms”](doc/pdf/vfa.pdf)  
-  _Version 1.4 (2020-08-07 17:12, Coq 8.9.1 or later)_
+- A. Appel (2021) [“Verified Functional Algorithms”](doc/pdf/vfa.pdf)  
+  _Version 1.5.1 (2021-08-11 15:18, Coq 8.12 or later)_
 
-- L. Lampropoulos and B. Pierce (2020) [“QuickChick: Property-Based Testing in Coq”](doc/pdf/qc.pdf)  
-  _Version 1.1 (2020-10-14 10:24, Coq 8.12)_
+- L. Lampropoulos and B. Pierce (2021) [“QuickChick: Property-Based Testing in Coq”](doc/pdf/qc.pdf)  
+  _Version 1.2.1 (2021-08-11 15:19, Coq 8.12 or later)_
 
-- A. Appel and Q. Cao (2020) [“Verifiable C”](doc/pdf/vc.pdf)  
-  _Version 0.9.7 (2020-09-18 15:40, Coq 8.12) Compatible with VST 2.6 (July 2020)_
+- A. Appel and Q. Cao (2021) [“Verifiable C”](doc/pdf/vc.pdf)  
+  _Version 1.1.1 (2021-08-11 15:23, Coq 8.13) Compatible with VST 2.8 (June 2021)_
+
+- A. Charguéraud ["Separation Logic Foundations"](doc/pdf/slf)
+  _Version 1.1 (2021-08-11 15:27, Coq 8.12 or later)_
 
 
 Usage
@@ -28,6 +31,16 @@ To regenerate the PDFs, ensure Coq, QuickChick, VST and LaTeX are installed, the
 $ make
 ```
 
+If you use [Nix](https://nixos.org), all the tools needed should be available.
+
+```
+$ # With flakes (allow impure for compcert)
+$ NIXPKGS_ALLOW_UNFREE=1 nix develop --impure
+
+$ # Default Nix
+$ NIXPKGS_ALLOW_UNFREE=1 nix-shell
+```
+
 ### Notes
 
 The [Makefiles](src/Makefile.patch) are patched during the build process, so that chapters are generated in the right order, and the LaTeX nesting limit is not reached.
@@ -35,23 +48,20 @@ The [Makefiles](src/Makefile.patch) are patched during the build process, so tha
 Similarly, the following chapters are patched:
 
 - Logical Foundation book
-  - [Preface](src/lf-Preface.v.patch) _To fill BibTeX info_
-- Programming Language Foundation book
-  - [Preface](src/plf-Preface.v.patch) _To fill BibTeX info_
+  - [Induction](src/Induction.v.patch) _To escape code listings_
 - Verified Functional Algorithms book
-  - [Preface](src/vfa-Preface.v.patch) _To fill BibTeX info_
   - [Extract](src/Extract.v.patch) _To escape code listings_
   - [Redblack](src/Redblack.v.patch) _To escape code listings_
 - QuickChick book
-  - [Preface](src/qc-Preface.v.patch) _To fill BibTeX info_
   - [Typeclasses](src/Typeclasses.v.patch) _To combine diacritic mark to avoid LaTeX confusion_
   - [QuickChickTool](src/QuickChickTool.v.patch) _To escape code listings_
 - Verifiable C book
-  - [Preface](src/vc-Preface.v.patch) _To fill BibTeX info_
   - [Verif_sumarray](src/Verif_sumarray.v.patch) _To escape code listings_
   - [Verif_reverse](src/Verif_reverse.v.patch) _To escape code listings_
   - [Verif_strlib](src/Verif_strlib.v.patch) _To escape code listings_
   - [Verif_hash](src/Verif_hash.v.patch) _To escape code listings_
+- Separation Logic Foundations
+  - [Rules](src/Rules.v.patch) _To combine diacritic mark to avoid LaTeX confusion_
 
 
 About
